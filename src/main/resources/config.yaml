@@ -1,0 +1,4 @@
+database:
+  url: jdbc:postgresql://localhost:5432/telegram_bot
+  usr: bot_user
+  password: 3773
