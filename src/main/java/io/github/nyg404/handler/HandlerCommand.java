@@ -22,22 +22,24 @@ public class HandlerCommand {
         Collections.addAll(commands, icommands);
     }
 
+    private static final ExecutorService commandExecutor = Executors.newFixedThreadPool(10);
+
     public static void update(Update update, MessageDispetcher dispatcher){
-        String text = update.getMessage().getText().trim();
-
-        for (ICommand cmd : commands) {
-            if (!text.startsWith(cmd.prefix())) continue; // пропускаем неподходящие префиксы
-
-            String commandName = text.substring(cmd.prefix().length()).split(" ")[0].toLowerCase();
-            if (cmd.name().toLowerCase().equals(commandName)) {
-                executor.submit(() -> cmd.update(update, dispatcher));
-                break; // нашли команду, больше не ищем
+        commandExecutor.submit(() -> {
+            String text = update.getMessage().getText().trim();
+            for (ICommand cmd : commands) {
+                if (!text.startsWith(cmd.prefix())) continue;
+                String commandName = text.substring(cmd.prefix().length()).split(" ")[0].toLowerCase();
+                if (cmd.name().toLowerCase().equals(commandName)) {
+                    cmd.update(update, dispatcher); // сюда можно передавать taskDispatcher
+                    break;
+                }
             }
-        }
-
+        });
     }
 
+
     public static void shutdown(){
-        executor.shutdown();
+        commandExecutor.shutdown();
     }
 }
