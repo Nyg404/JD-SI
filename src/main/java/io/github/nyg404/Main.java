@@ -20,7 +20,9 @@ public class Main {
         try {
             service.start();
             TelegramBotsLongPollingApplication application = new TelegramBotsLongPollingApplication();
-            application.registerBot(token, new Bot(service.getMessageDispetcher(), service.getTaskDispatcher()));
+            Bot bot = new Bot(service.getMessageDispetcher(), service.getTaskDispatcher());
+            application.registerBot(token, bot);
+            System.out.println("Айди бота: " + bot.getBotId());
             log.info("Бот запустился.");
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
