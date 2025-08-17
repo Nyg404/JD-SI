@@ -1,32 +1,29 @@
 package io.github.nyg404.service;
 
+import io.github.nyg404.configuration.BotConfiguration;
 import io.github.nyg404.db.DataConnection;
 import io.github.nyg404.task.MessageDispetcher;
 import io.github.nyg404.task.TaskDispatcher;
+import lombok.Getter;
 
+@Getter
 public class ServiceManager {
-    private final MessageDispetcher messageDispetcher;
+    private final MessageDispetcher messageDispatcher;
     private final TaskDispatcher taskDispatcher;
+    private final BotConfiguration config;
 
-    public ServiceManager() {
-        this.messageDispetcher = new MessageDispetcher();
-        this.taskDispatcher = new TaskDispatcher(messageDispetcher);
-    }
-
-    public MessageDispetcher getMessageDispetcher() {
-        return messageDispetcher;
-    }
-
-    public TaskDispatcher getTaskDispatcher() {
-        return taskDispatcher;
+    public ServiceManager(BotConfiguration config) {
+        this.config = config;
+        this.messageDispatcher = new MessageDispetcher(25, 2414, 2);
+        this.taskDispatcher = new TaskDispatcher(messageDispatcher);
     }
 
     public void start() {
-        DataConnection.createDefaultTable();
-        messageDispetcher.start();
+        DataConnection.getInstance().createDefaultTable(); // Временное решение, см. ниже
+        messageDispatcher.start();
     }
 
     public void stop() {
-        messageDispetcher.stop();
+        messageDispatcher.stop();
     }
 }
