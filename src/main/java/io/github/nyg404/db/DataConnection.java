@@ -9,8 +9,8 @@ import java.sql.Statement;
 
 public class DataConnection {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/telegram_bot";
-    private static final String USER = "bot_user";
+    private static final String URL = "jdbc:postgresql://localhost:5432/telegram_db";
+    private static final String USER = "bot_users";
     private static final String PASSWORD = "3773";
 
     private static final String DEFAULT_USERS_TABLE = """

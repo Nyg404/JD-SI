@@ -1,7 +1,7 @@
 package io.github.nyg404.handler;
 
-import io.github.nyg404.db.DataManager;
-import io.github.nyg404.record.UserKey;
+import io.github.nyg404.service.DataService;
+import io.github.nyg404.models.UserKey;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.chat.Chat;
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class Event {
-    private static final DataManager dm = DataManager.getInstance();
+    private static final DataService dm = DataService.getInstance();
     private final Update update;
     private final long botId;
     private final Object lock = new Object();
@@ -70,7 +70,7 @@ public class Event {
             }
         }
         if (userFirstJoinGroup(key)) {
-            dm.addUserWithGroup(key.userId(), key.groupId(), "None");
+            dm.addUserToGroup(key.userId(), key.groupId(), "None");
         }
     }
 

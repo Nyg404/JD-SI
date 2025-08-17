@@ -1,5 +1,6 @@
 package io.github.nyg404;
 
+import io.github.nyg404.bots.commands.BioCommand;
 import io.github.nyg404.bots.commands.HandlerCommand;
 import io.github.nyg404.bots.commands.HeavyCommand;
 import io.github.nyg404.handler.Event;
@@ -21,7 +22,7 @@ public class Bot implements LongPollingSingleThreadUpdateConsumer {
         this.dispatcher = dispatcher;
         this.taskDispatcher = taskDispatcher;
         this.client = client;
-        HandlerCommand.registerCommand(new HeavyCommand(taskDispatcher, client));
+        HandlerCommand.registerCommand(new HeavyCommand(taskDispatcher, client), new BioCommand(taskDispatcher, client));
     }
 
     public long getBotId() {

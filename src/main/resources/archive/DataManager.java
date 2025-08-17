@@ -2,8 +2,8 @@ package io.github.nyg404.db;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
-import io.github.nyg404.record.UserKey;
-import io.github.nyg404.record.UserStats;
+import io.github.nyg404.models.UserKey;
+import io.github.nyg404.models.UserStats;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
@@ -192,6 +192,29 @@ public class DataManager {
         executor.submit(() -> updateBooleanField("groups_table", "is_ban", groupId, ban, false));
     }
 
+    public void updateUserBio(long userId, String groupId, String userBio) {
+        executor.submit(() -> {
+            String sql = "UPDATE user_group_state SET user_bio = ? WHERE user_id = ? AND group_id = ?";
+            try (Connection conn = db.getConnection();
+                 PreparedStatement pr = conn.prepareStatement(sql)) {
+
+                pr.setString(1, userBio);
+                pr.setLong(2, userId);
+                pr.setString(3, groupId);
+                pr.executeUpdate();
+
+                userGroupStatsCache.put(new UserKey(userId, groupId),
+                        new UserStats(userId, groupId, userBio));
+
+                log.info("Биография пользователя {} в группе {} обновлена.", userId, groupId);
+
+            } catch (SQLException e) {
+                log.error("Ошибка при обновлении биографии пользователя {} в группе {}: {}", userId, groupId, e.getMessage());
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
     private void updateBooleanField(String table, String field, Object id, boolean value, boolean isUser) {
         String sql = "UPDATE " + table + " SET " + field + " = ? WHERE id = ?";
         try (Connection conn = db.getConnection();
@@ -239,6 +262,28 @@ public class DataManager {
 
             } catch (SQLException e) {
                 log.error("Ошибка при удалении пользователя {} из группы {}: {}", userId, groupId, e.getMessage());
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void removeUserBio(long userId, String groupId) {
+        executor.submit(() -> {
+            String sql = "UPDATE user_group_state SET user_bio = NULL WHERE user_id = ? AND group_id = ?";
+            try (Connection conn = db.getConnection();
+                 PreparedStatement pr = conn.prepareStatement(sql)) {
+
+                pr.setLong(1, userId);
+                pr.setString(2, groupId);
+                pr.executeUpdate();
+
+                userGroupStatsCache.put(new UserKey(userId, groupId),
+                        new UserStats(userId, groupId, null));
+
+                log.info("Биография пользователя {} в группе {} удалена.", userId, groupId);
+
+            } catch (SQLException e) {
+                log.error("Ошибка при удалении биографии пользователя {} в группе {}: {}", userId, groupId, e.getMessage());
                 throw new RuntimeException(e);
             }
         });
