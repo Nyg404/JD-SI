@@ -1,4 +1,4 @@
-package io.github.nyg404.db;
+package io.github.nyg404.core.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

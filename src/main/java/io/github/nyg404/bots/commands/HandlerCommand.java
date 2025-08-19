@@ -1,7 +1,7 @@
 package io.github.nyg404.bots.commands;
 
 import io.github.nyg404.handler.ICommand;
-import io.github.nyg404.task.MessageDispetcher;
+import io.github.nyg404.core.task.MessageDispetcher;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

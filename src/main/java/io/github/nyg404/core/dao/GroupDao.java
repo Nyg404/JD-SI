@@ -1,6 +1,5 @@
-package io.github.nyg404.dao;
+package io.github.nyg404.core.dao;
 
-import io.github.nyg404.db.DataConnection;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;

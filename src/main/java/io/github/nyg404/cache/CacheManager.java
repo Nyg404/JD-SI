@@ -2,11 +2,11 @@ package io.github.nyg404.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
-import io.github.nyg404.dao.GroupDao;
-import io.github.nyg404.dao.UserDao;
-import io.github.nyg404.dao.UserGroupDao;
-import io.github.nyg404.models.UserKey;
-import io.github.nyg404.models.UserStats;
+import io.github.nyg404.core.dao.GroupDao;
+import io.github.nyg404.core.dao.UserDao;
+import io.github.nyg404.core.dao.UserGroupDao;
+import io.github.nyg404.core.models.UserKey;
+import io.github.nyg404.core.models.UserStats;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

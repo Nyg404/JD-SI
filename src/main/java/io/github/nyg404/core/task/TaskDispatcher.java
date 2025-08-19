@@ -1,4 +1,4 @@
-package io.github.nyg404.task;
+package io.github.nyg404.core.task;
 
 import lombok.extern.slf4j.Slf4j;
 

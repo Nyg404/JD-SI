@@ -1,11 +1,11 @@
 package io.github.nyg404.bots.commands;
 
 
-import io.github.nyg404.service.DataService;
+import io.github.nyg404.core.service.DataService;
 import io.github.nyg404.handler.ICommand;
-import io.github.nyg404.models.UserStats;
-import io.github.nyg404.task.MessageDispetcher;
-import io.github.nyg404.task.TaskDispatcher;
+import io.github.nyg404.core.models.UserStats;
+import io.github.nyg404.core.task.MessageDispetcher;
+import io.github.nyg404.core.task.TaskDispatcher;
 import org.telegram.telegrambots.meta.api.methods.GetUserProfilePhotos;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;

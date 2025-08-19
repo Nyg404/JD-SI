@@ -1,7 +1,7 @@
 package io.github.nyg404;
 
-import io.github.nyg404.configuration.BotConfiguration;
-import io.github.nyg404.service.ServiceManager;
+import io.github.nyg404.config.BotConfiguration;
+import io.github.nyg404.core.service.ServiceManager;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;

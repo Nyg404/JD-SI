@@ -1,10 +1,10 @@
-package io.github.nyg404.service;
+package io.github.nyg404.core.service;
 
 import io.github.nyg404.cache.CacheManager;
-import io.github.nyg404.dao.GroupDao;
-import io.github.nyg404.dao.UserDao;
-import io.github.nyg404.dao.UserGroupDao;
-import io.github.nyg404.models.UserStats;
+import io.github.nyg404.core.dao.GroupDao;
+import io.github.nyg404.core.dao.UserDao;
+import io.github.nyg404.core.dao.UserGroupDao;
+import io.github.nyg404.core.models.UserStats;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

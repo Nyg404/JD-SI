@@ -1,9 +1,9 @@
-package io.github.nyg404.service;
+package io.github.nyg404.core.service;
 
-import io.github.nyg404.configuration.BotConfiguration;
-import io.github.nyg404.db.DataConnection;
-import io.github.nyg404.task.MessageDispetcher;
-import io.github.nyg404.task.TaskDispatcher;
+import io.github.nyg404.config.BotConfiguration;
+import io.github.nyg404.core.dao.DataConnection;
+import io.github.nyg404.core.task.MessageDispetcher;
+import io.github.nyg404.core.task.TaskDispatcher;
 import lombok.Getter;
 
 @Getter

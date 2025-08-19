@@ -1,4 +1,4 @@
-package io.github.nyg404.configuration;
+package io.github.nyg404.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import lombok.Getter;

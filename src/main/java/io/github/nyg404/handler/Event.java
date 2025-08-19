@@ -1,7 +1,7 @@
 package io.github.nyg404.handler;
 
-import io.github.nyg404.service.DataService;
-import io.github.nyg404.models.UserKey;
+import io.github.nyg404.core.service.DataService;
+import io.github.nyg404.core.models.UserKey;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.chat.Chat;
